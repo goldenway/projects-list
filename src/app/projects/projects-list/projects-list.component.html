@@ -1,3 +1,20 @@
-<pl-project-item></pl-project-item>
-<pl-project-item></pl-project-item>
-<pl-project-item></pl-project-item>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-success">New Project</button>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        <a href="#" class="list-group-item clearfix" *ngFor="let project of projects">
+            <div class="pull-left">
+                <h4 class="list-group-item-heading">{{ project.name }}</h4>
+                <p class="list-group-item-text">{{ project.description }}</p>
+            </div>
+            <span class="pull-right">
+                <img [src]="project.imagePath" alt="{{project.name}}" class="img-responsive" style="max-height: 70px;">
+            </span>
+        </a>
+        <!-- <pl-project-item></pl-project-item> -->
+    </div>
+</div>
