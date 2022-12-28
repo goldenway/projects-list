@@ -2,6 +2,10 @@
     <div class="col-xs-10">
         <pl-technologies-edit></pl-technologies-edit>
         <hr>
-        <p>List of Technologies</p>
+        <ul class="list-group">
+            <a class="list-group-item" style="cursor: pointer;" *ngFor="let technology of technologies">
+                {{ technology.name }} ({{ technology.count }})
+            </a>
+        </ul>
     </div>
 </div>
