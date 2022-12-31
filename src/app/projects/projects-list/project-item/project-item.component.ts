@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Project } from '../../project.model';
 
 @Component({
@@ -7,4 +7,9 @@ import { Project } from '../../project.model';
 })
 export class ProjectItemComponent {
   @Input() project: Project;
+  @Output() projectClicked = new EventEmitter<void>();
+
+  onProjectClicked() {
+    this.projectClicked.emit();
+  }
 }

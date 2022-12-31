@@ -8,7 +8,8 @@
     <div class="col-xs-12">
         <pl-project-item
             *ngFor="let projectItem of projects"
-            [project]="projectItem">
+            [project]="projectItem"
+            (projectClicked)="onProjectSelected(projectItem)">
         </pl-project-item>
     </div>
 </div>
