@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-10">
-        <pl-technologies-edit></pl-technologies-edit>
+        <pl-technologies-edit (addClick)="onTechnologyAdded($event)"></pl-technologies-edit>
         <hr>
         <ul class="list-group">
             <a class="list-group-item" style="cursor: pointer;" *ngFor="let technology of technologies">

@@ -11,4 +11,8 @@ export class TechnologiesComponent {
     new Technology('HTML5', 5),
     new Technology('Angular', 4)
   ];
+
+  onTechnologyAdded(technology: Technology) {
+    this.technologies.push(technology);
+  }
 }
