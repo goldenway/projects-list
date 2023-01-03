@@ -1,10 +1,10 @@
-<pl-header></pl-header>
+<pl-header (menuIndexChange)="onMenuIndexChange($event)"></pl-header>
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <pl-projects></pl-projects>
-            <pl-technologies></pl-technologies>
+            <pl-projects *ngIf="selectedMenuIndex === 0"></pl-projects>
+            <pl-technologies *ngIf="selectedMenuIndex === 1"></pl-technologies>
         </div>
     </div>
 </div>

@@ -9,6 +9,7 @@ import { ProjectItemComponent } from './projects/projects-list/project-item/proj
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { TechnologiesComponent } from './technologies/technologies.component';
 import { TechnologiesEditComponent } from './technologies/technologies-edit/technologies-edit.component';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TechnologiesEditComponent } from './technologies/technologies-edit/tech
     ProjectItemComponent,
     ProjectDetailComponent,
     TechnologiesComponent,
-    TechnologiesEditComponent
+    TechnologiesEditComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
     selector: 'pl-header',
@@ -6,4 +6,9 @@ import { Component } from "@angular/core";
 })
 export class HeaderComponent {
     collapsed = true;
+    @Output() menuIndexChange: EventEmitter<number> = new EventEmitter<number>();
+
+    onMenuIndexSelect(index: number) {
+        this.menuIndexChange.emit(index);
+    }
 }

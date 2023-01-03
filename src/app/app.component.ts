@@ -4,4 +4,10 @@ import { Component } from '@angular/core';
   selector: 'pl-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent {}
+export class AppComponent {
+  selectedMenuIndex: number = 0;
+
+  onMenuIndexChange(index: number) {
+    this.selectedMenuIndex = index;
+  }
+}
