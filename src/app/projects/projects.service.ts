@@ -1,13 +1,36 @@
 import { EventEmitter } from '@angular/core';
 import { Project } from './project.model';
+import { Technology } from '../shared/technology.model';
 
 export class ProjectsService {
   projectSelected = new EventEmitter<Project>();
 
   private projects: Project[] = [
-    new Project('Test Project 1', 'Test description 1', 'https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2021/10/how_to_create_a_project_timeline_-_article_image.jpg'),
-    new Project('Test Project 2', 'Test description 2', 'https://kantata.marketing/wp-content/uploads/2021/08/project-managemenr-goals.jpg'),
-    new Project('Test Project 3', 'Test description 3', 'https://mediasat.info/wp-content/uploads/2020/07/project-management.jpg')
+    new Project(
+      'Project 1',
+      'Project description 1',
+      '../../assets/01.jpg',
+      [
+        new Technology('JavaScript', 1),
+        new Technology('CSS3', 1)
+      ]),
+    new Project(
+      'Project 2',
+      'Project description 2',
+      '../../assets/02.jpg',
+      [
+        new Technology('Angular', 1),
+        new Technology('CSS3', 1),
+        new Technology('HTML5', 1)
+      ]),
+    new Project(
+      'Project 3',
+      'Project description 3',
+      '../../assets/03.jpg',
+      [
+        new Technology('TypeScript', 1),
+        new Technology('HTML5', 1)
+      ])
   ];
 
   getProjects() {
