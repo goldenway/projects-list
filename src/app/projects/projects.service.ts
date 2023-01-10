@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
 import { Project } from './project.model';
 
-export class ProjectService {
+export class ProjectsService {
   projectSelected = new EventEmitter<Project>();
 
   private projects: Project[] = [

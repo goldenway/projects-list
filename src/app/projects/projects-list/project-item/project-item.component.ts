@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Project } from '../../project.model';
-import { ProjectService } from '../../project.service';
+import { ProjectsService } from '../../projects.service';
 
 @Component({
   selector: 'pl-project-item',
@@ -9,9 +9,9 @@ import { ProjectService } from '../../project.service';
 export class ProjectItemComponent {
   @Input() project: Project;
 
-  constructor(private projectService: ProjectService) {}
+  constructor(private projectsService: ProjectsService) {}
 
   onProjectClicked() {
-    this.projectService.projectSelected.emit(this.project);
+    this.projectsService.projectSelected.emit(this.project);
   }
 }

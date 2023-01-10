@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from './project.model';
-import { ProjectService } from './project.service';
+import { ProjectsService } from './projects.service';
 
 @Component({
   selector: 'pl-projects',
   templateUrl: './projects.component.html',
-  providers: [ProjectService]
+  providers: [ProjectsService]
 })
 export class ProjectsComponent implements OnInit {
   selectedProject: Project;
 
-  constructor(private projectService: ProjectService) {}
+  constructor(private projectsService: ProjectsService) {}
 
   ngOnInit(): void {
-    this.projectService.projectSelected.subscribe(
+    this.projectsService.projectSelected.subscribe(
       (project: Project) => {
         this.selectedProject = project;
       }
