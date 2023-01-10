@@ -1,18 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Technology } from '../shared/technology.model';
+import { TechnologiesService } from './technologies.service';
 
 @Component({
   selector: 'pl-technologies',
   templateUrl: './technologies.component.html'
 })
-export class TechnologiesComponent {
-  technologies: Technology[] = [
-    new Technology('JavaScript', 5),
-    new Technology('HTML5', 5),
-    new Technology('Angular', 4)
-  ];
+export class TechnologiesComponent implements OnInit {
+  technologies: Technology[];
 
-  onTechnologyAdded(technology: Technology) {
-    this.technologies.push(technology);
+  constructor(private technologiesService: TechnologiesService) {}
+
+  ngOnInit(): void {
+    this.technologies = this.technologiesService.getTechnologies();
   }
 }
