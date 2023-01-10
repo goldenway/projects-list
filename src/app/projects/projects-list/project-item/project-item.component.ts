@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Project } from '../../project.model';
+import { ProjectService } from '../../project.service';
 
 @Component({
   selector: 'pl-project-item',
@@ -7,9 +8,10 @@ import { Project } from '../../project.model';
 })
 export class ProjectItemComponent {
   @Input() project: Project;
-  @Output() projectClicked = new EventEmitter<void>();
+
+  constructor(private projectService: ProjectService) {}
 
   onProjectClicked() {
-    this.projectClicked.emit();
+    this.projectService.projectSelected.emit(this.project);
   }
 }
