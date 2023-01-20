@@ -18,4 +18,8 @@ export class TechnologiesService {
 	addTechnology(technology: Technology) {
 		this.technologies.push(technology);
 	}
+
+	recalculateTechnologies(technologies: Technology[]) {
+		this.technologies.push(...technologies);
+	}
 }
