@@ -10,6 +10,7 @@ import { ProjectDetailComponent } from './projects/project-detail/project-detail
 import { TechnologiesComponent } from './technologies/technologies.component';
 import { TechnologiesEditComponent } from './technologies/technologies-edit/technologies-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DropdownDirective } from './shared/dropdown.directive';
     DropdownDirective
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
