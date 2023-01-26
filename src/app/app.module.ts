@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { ProjectStartComponent } from './projects/project-start/project-start.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { ProjectItemComponent } from './projects/projects-list/project-item/project-item.component';
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
@@ -17,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     HeaderComponent,
     ProjectsComponent,
+    ProjectStartComponent,
     ProjectsListComponent,
     ProjectItemComponent,
     ProjectDetailComponent,
