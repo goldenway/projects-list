@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TechnologiesService } from 'src/app/technologies/technologies.service';
 import { Project } from '../project.model';
@@ -15,7 +15,8 @@ export class ProjectDetailComponent implements OnInit {
 
   constructor(private technologisService: TechnologiesService,
               private projectService: ProjectsService,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -28,5 +29,9 @@ export class ProjectDetailComponent implements OnInit {
 
   onRecalculateTechnologies() {
     this.technologisService.recalculateTechnologies(this.project.technologies);
+  }
+
+  onEditClicked() {
+    this.router.navigate(['edit'], {relativeTo: this.route});
   }
 }
