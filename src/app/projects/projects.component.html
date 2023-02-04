@@ -3,11 +3,6 @@
         <pl-projects-list></pl-projects-list>
     </div>
     <div class="col-md-7">
-        <pl-project-detail *ngIf="selectedProject; else infoText"
-            [project]="selectedProject">
-        </pl-project-detail>
-        <ng-template #infoText>
-            <h4>Please select a Project</h4>
-        </ng-template>
+        <router-outlet></router-outlet>
     </div>
 </div>

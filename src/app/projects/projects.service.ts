@@ -1,10 +1,7 @@
-import { EventEmitter } from '@angular/core';
 import { Project } from './project.model';
 import { Technology } from '../shared/technology.model';
 
 export class ProjectsService {
-  projectSelected = new EventEmitter<Project>();
-
   private projects: Project[] = [
     new Project(
       'Project 1',
@@ -33,8 +30,12 @@ export class ProjectsService {
       ])
   ];
 
-  getProjects() {
+  getProjects(): Project[] {
     // getting a copy of projects array
     return this.projects.slice();
+  }
+
+  getProjectWithIndex(index: number): Project {
+    return this.projects[index];
   }
 }

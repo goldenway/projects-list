@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Project } from './project.model';
+import { Component } from '@angular/core';
 import { ProjectsService } from './projects.service';
 
 @Component({
@@ -7,16 +6,4 @@ import { ProjectsService } from './projects.service';
   templateUrl: './projects.component.html',
   providers: [ProjectsService]
 })
-export class ProjectsComponent implements OnInit {
-  selectedProject: Project;
-
-  constructor(private projectsService: ProjectsService) {}
-
-  ngOnInit(): void {
-    this.projectsService.projectSelected.subscribe(
-      (project: Project) => {
-        this.selectedProject = project;
-      }
-    );
-  }
-}
+export class ProjectsComponent {}

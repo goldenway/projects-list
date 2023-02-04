@@ -1,10 +1,9 @@
-<pl-header (menuIndexChange)="onMenuIndexChange($event)"></pl-header>
+<pl-header></pl-header>
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <pl-projects *ngIf="selectedMenuIndex === 0"></pl-projects>
-            <pl-technologies *ngIf="selectedMenuIndex === 1"></pl-technologies>
+            <router-outlet></router-outlet>
         </div>
     </div>
 </div>

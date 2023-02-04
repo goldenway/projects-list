@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { Project } from '../project.model';
 import { ProjectsService } from '../projects.service';
 
@@ -9,9 +11,15 @@ import { ProjectsService } from '../projects.service';
 export class ProjectsListComponent implements OnInit {
   projects: Project[];
 
-  constructor(private projectsService: ProjectsService) {}
+  constructor(private projectsService: ProjectsService,
+              private router: Router,
+              private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.projects = this.projectsService.getProjects();
+  }
+
+  onNewProjectClicked() {
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 }
