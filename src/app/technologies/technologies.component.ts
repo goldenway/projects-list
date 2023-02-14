@@ -10,7 +10,7 @@ import { TechnologiesService } from './technologies.service';
 })
 export class TechnologiesComponent implements OnInit, OnDestroy {
   technologies: Technology[];
-  subscription: Subscription;
+  subscription: Subscription; 
 
   constructor(private technologiesService: TechnologiesService) {}
 
@@ -21,6 +21,10 @@ export class TechnologiesComponent implements OnInit, OnDestroy {
         this.technologies = technologies;
       }
     );
+  }
+
+  onEditItem(index: number) {
+    this.technologiesService.startedEditing.next(index);
   }
 
   ngOnDestroy(): void {

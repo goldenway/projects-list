@@ -3,7 +3,8 @@
         <pl-technologies-edit></pl-technologies-edit>
         <hr>
         <ul class="list-group">
-            <a class="list-group-item" style="cursor: pointer;" *ngFor="let technology of technologies">
+            <a class="list-group-item" style="cursor: pointer;" (click)="onEditItem(i)"
+                *ngFor="let technology of technologies; let i = index">
                 {{ technology.name }} ({{ technology.count }})
             </a>
         </ul>

@@ -8,6 +8,7 @@ import { Technology } from "../shared/technology.model";
 })
 export class TechnologiesService {
 	technologiesChanged = new Subject<Technology[]>();
+	startedEditing = new Subject<number>();
 	private technologies: Technology[] = [
 		new Technology('JavaScript', 5),
 		new Technology('HTML5', 5),
@@ -16,6 +17,10 @@ export class TechnologiesService {
 
 	getTechnologies(): Technology[] {
 		return this.technologies;
+	}
+
+	getTechnology(index: number) {
+		return this.technologies[index];
 	}
 
 	addTechnology(technology: Technology) {
