@@ -1,4 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Technology } from '../../shared/technology.model';
 import { TechnologiesService } from '../technologies.service';
 
@@ -7,16 +8,12 @@ import { TechnologiesService } from '../technologies.service';
   templateUrl: './technologies-edit.component.html'
 })
 export class TechnologiesEditComponent {
-  @ViewChild('nameInput') nameInputRef: ElementRef;
-  @ViewChild('countInput') countInputRef: ElementRef;
-
   constructor(private technologiesService: TechnologiesService) {}
 
-  onAddTechnology() {
-    const newTechnology = new Technology(
-      this.nameInputRef.nativeElement.value,
-      this.countInputRef.nativeElement.value);
-    
+  onAddTechnology(form: NgForm) {
+    const newTechnology = new Technology(form.value.name, form.value.count);
     this.technologiesService.addTechnology(newTechnology);
+
+    form.reset();
   }
 }
