@@ -35,9 +35,18 @@ export class TechnologiesEditComponent implements OnInit, OnDestroy {
     } else {
       this.technologiesService.addTechnology(newTechnology);
     }
+    
+    this.onClear();
+  }
 
+  onDelete() {
+    this.technologiesService.deleteTechnology(this.editedItemIndex);
+    this.onClear();
+  }
+
+  onClear() {
+    this.form.reset();
     this.editMode = false;
-    form.reset();
   }
 
   ngOnDestroy(): void {

@@ -37,4 +37,9 @@ export class TechnologiesService {
 		this.technologies[index] = newTechnology;
 		this.technologiesChanged.next(this.technologies.slice());
 	}
+
+	deleteTechnology(index: number) {
+		this.technologies.splice(index, 1);
+		this.technologiesChanged.next(this.technologies.slice());
+	}
 }
