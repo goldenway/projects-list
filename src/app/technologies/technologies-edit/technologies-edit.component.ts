@@ -13,6 +13,7 @@ export class TechnologiesEditComponent implements OnInit, OnDestroy {
   @ViewChild('f') form: NgForm;
   editMode = false;
   editedItem: Technology;
+  editedItemIndex: number;
   subscription: Subscription;
 
   constructor(private technologiesService: TechnologiesService) {}
@@ -20,15 +21,22 @@ export class TechnologiesEditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.technologiesService.startedEditing.subscribe((index: number) => {
       this.editMode = true;
+      this.editedItemIndex = index;
       this.editedItem = this.technologiesService.getTechnology(index);
       this.form.setValue({name: this.editedItem.name, count: this.editedItem.count});
     });
   }
 
-  onAddTechnology(form: NgForm) {
+  onSubmit(form: NgForm) {
     const newTechnology = new Technology(form.value.name, form.value.count);
-    this.technologiesService.addTechnology(newTechnology);
 
+    if (this.editMode) {
+      this.technologiesService.updateTechnology(this.editedItemIndex, newTechnology);
+    } else {
+      this.technologiesService.addTechnology(newTechnology);
+    }
+
+    this.editMode = false;
     form.reset();
   }
 

@@ -32,4 +32,9 @@ export class TechnologiesService {
 		this.technologies.push(...technologies);
 		this.technologiesChanged.next(this.technologies.slice());
 	}
+
+	updateTechnology(index: number, newTechnology: Technology) {
+		this.technologies[index] = newTechnology;
+		this.technologiesChanged.next(this.technologies.slice());
+	}
 }
