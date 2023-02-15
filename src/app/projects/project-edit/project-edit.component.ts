@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { ProjectsService } from '../projects.service';
@@ -36,8 +36,8 @@ export class ProjectEditComponent implements OnInit {
 
   onAddTechnology() {
     const newTechnology = new FormGroup({
-      'name': new FormControl(),
-      'count': new FormControl()
+      'name': new FormControl(null, Validators.required),
+      'count': new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)])
     });
     (<FormArray>this.projectForm.get('technologies')).push(newTechnology);
   }
@@ -56,17 +56,17 @@ export class ProjectEditComponent implements OnInit {
       if (project['technologies']) {
         for (let technology of project.technologies) {
           projectTechnologies.push(new FormGroup({
-            'name': new FormControl(technology.name),
-            'count': new FormControl(technology.count)
+            'name': new FormControl(technology.name, Validators.required),
+            'count': new FormControl(technology.count, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)])
           }));
         }
       }
     }
 
     this.projectForm = new FormGroup({
-       'name': new FormControl(projectName),
-       'imagePath': new FormControl(projectImagePath),
-       'description': new FormControl(projectDescription),
+       'name': new FormControl(projectName, Validators.required),
+       'imagePath': new FormControl(projectImagePath, Validators.required),
+       'description': new FormControl(projectDescription, Validators.required),
        'technologies': projectTechnologies
     });
   }
