@@ -34,6 +34,14 @@ export class ProjectEditComponent implements OnInit {
    console.log(this.projectForm); 
   }
 
+  onAddTechnology() {
+    const newTechnology = new FormGroup({
+      'name': new FormControl(),
+      'count': new FormControl()
+    });
+    (<FormArray>this.projectForm.get('technologies')).push(newTechnology);
+  }
+
   private initForm() {
     let projectName = '';
     let projectImagePath = '';
