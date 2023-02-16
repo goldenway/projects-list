@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { ProjectsService } from '../projects.service';
 
@@ -14,6 +14,7 @@ export class ProjectEditComponent implements OnInit {
   projectForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private projectsService: ProjectsService) {}
 
   ngOnInit(): void {
@@ -32,12 +33,17 @@ export class ProjectEditComponent implements OnInit {
 
   onSubmit() {
     const newProject = this.projectForm.value;
-
     if (this.isEditMode) {
       this.projectsService.updateProject(this.id, newProject);
     } else {
       this.projectsService.addProject(newProject);
     }
+    
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
+
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
   onAddTechnology() {
@@ -55,7 +61,7 @@ export class ProjectEditComponent implements OnInit {
     let projectTechnologies = new FormArray([]);
 
     if (this.isEditMode) {
-      const project = this.projectsService.getProjectWithIndex(this.id);
+      const project = this.projectsService.getProjectById(this.id);
       projectName = project.name;
       projectImagePath = project.imagePath;
       projectDescription = project.description;

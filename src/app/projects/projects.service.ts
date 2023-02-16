@@ -39,7 +39,7 @@ export class ProjectsService {
     return this.projects.slice();
   }
 
-  getProjectWithIndex(index: number): Project {
+  getProjectById(index: number): Project {
     return this.projects[index];
   }
 
@@ -50,6 +50,11 @@ export class ProjectsService {
 
   updateProject(index: number, newProject: Project) {
     this.projects[index] = newProject;
+    this.projectsChanged.next(this.projects.slice());
+  }
+
+  deleteProject(index: number) {
+    this.projects.splice(index, 1);
     this.projectsChanged.next(this.projects.slice());
   }
 }

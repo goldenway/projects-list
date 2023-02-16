@@ -11,7 +11,7 @@ import { ProjectsService } from '../projects.service';
 })
 export class ProjectDetailComponent implements OnInit {
   project: Project;
-  projectIndex: number;
+  projectId: number;
 
   constructor(private technologisService: TechnologiesService,
               private projectService: ProjectsService,
@@ -21,8 +21,8 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
-        this.projectIndex = +params['id'];
-        this.project = this.projectService.getProjectWithIndex(this.projectIndex);
+        this.projectId = +params['id'];
+        this.project = this.projectService.getProjectById(this.projectId);
       }
     );
   }
@@ -31,7 +31,12 @@ export class ProjectDetailComponent implements OnInit {
     this.technologisService.recalculateTechnologies(this.project.technologies);
   }
 
-  onEditClicked() {
+  onEditProject() {
     this.router.navigate(['edit'], {relativeTo: this.route});
+  }
+
+  onDeleteProject () {
+    this.projectService.deleteProject(this.projectId);
+    this.router.navigate(['/projects']);
   }
 }
