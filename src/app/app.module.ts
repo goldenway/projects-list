@@ -14,6 +14,7 @@ import { TechnologiesComponent } from './technologies/technologies.component';
 import { TechnologiesEditComponent } from './technologies/technologies-edit/technologies-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
+import { ProjectsService } from './projects/projects.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { AppRoutingModule } from './app-routing.module';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ProjectsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
