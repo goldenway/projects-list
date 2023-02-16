@@ -31,7 +31,13 @@ export class ProjectEditComponent implements OnInit {
   }
 
   onSubmit() {
-   console.log(this.projectForm); 
+    const newProject = this.projectForm.value;
+
+    if (this.isEditMode) {
+      this.projectsService.updateProject(this.id, newProject);
+    } else {
+      this.projectsService.addProject(newProject);
+    }
   }
 
   onAddTechnology() {

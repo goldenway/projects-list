@@ -1,7 +1,11 @@
+import { Subject } from 'rxjs';
+
 import { Project } from './project.model';
 import { Technology } from '../shared/technology.model';
 
 export class ProjectsService {
+  projectsChanged = new Subject<Project[]>();
+
   private projects: Project[] = [
     new Project(
       'Project 1',
@@ -37,5 +41,15 @@ export class ProjectsService {
 
   getProjectWithIndex(index: number): Project {
     return this.projects[index];
+  }
+
+  addProject(project: Project) {
+    this.projects.push(project);
+    this.projectsChanged.next(this.projects.slice());
+  }
+
+  updateProject(index: number, newProject: Project) {
+    this.projects[index] = newProject;
+    this.projectsChanged.next(this.projects.slice());
   }
 }

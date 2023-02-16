@@ -17,6 +17,9 @@ export class ProjectsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.projects = this.projectsService.getProjects();
+    this.projectsService.projectsChanged.subscribe((projects: Project[]) => {
+      this.projects = projects;
+    });
   }
 
   onNewProjectClicked() {
