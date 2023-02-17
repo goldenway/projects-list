@@ -54,6 +54,10 @@ export class ProjectEditComponent implements OnInit {
     (<FormArray>this.projectForm.get('technologies')).push(newTechnology);
   }
 
+  onDeleteTechnology(index: number) {
+    (<FormArray>this.projectForm.get('technologies')).removeAt(index);
+  }
+
   private initForm() {
     let projectName = '';
     let projectImagePath = '';
