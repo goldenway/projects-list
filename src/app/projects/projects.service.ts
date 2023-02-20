@@ -1,8 +1,11 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 import { Project } from './project.model';
-import { Technology } from '../shared/technology.model';
+import { Technology } from '../shared/technology.model'
 
+@Injectable()
 export class ProjectsService {
   projectsChanged = new Subject<Project[]>();
 
@@ -34,6 +37,8 @@ export class ProjectsService {
       ])
   ];
 
+  constructor(private http: HttpClient) {}
+
   getProjects(): Project[] {
     // getting a copy of projects array
     return this.projects.slice();
@@ -56,5 +61,11 @@ export class ProjectsService {
   deleteProject(index: number) {
     this.projects.splice(index, 1);
     this.projectsChanged.next(this.projects.slice());
+  }
+
+  saveProjects() {
+     this.http
+      .put('https://gw-projects-list-default-rtdb.firebaseio.com/projects.json', this.projects)
+      .subscribe(response => console.log(response));
   }
 }
