@@ -39,6 +39,11 @@ export class ProjectsService {
 
   constructor(private http: HttpClient) {}
 
+  setProjects(projects: Project[]) {
+    this.projects = projects;
+    this.projectsChanged.next(this.projects.slice());
+  }
+
   getProjects(): Project[] {
     // getting a copy of projects array
     return this.projects.slice();
@@ -65,7 +70,13 @@ export class ProjectsService {
 
   saveProjects() {
      this.http
-      .put('https://gw-projects-list-default-rtdb.firebaseio.com/projects.json', this.projects)
+      .put<Project[]>('https://gw-projects-list-default-rtdb.firebaseio.com/projects.json', this.projects)
       .subscribe(response => console.log(response));
+  }
+
+  fetchProjects() {
+    this.http
+      .get<Project[]>('https://gw-projects-list-default-rtdb.firebaseio.com/projects.json')
+      .subscribe(projects => this.setProjects(projects));
   }
 }

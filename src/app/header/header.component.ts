@@ -14,4 +14,8 @@ export class HeaderComponent {
     onSaveData() {
         this.projectsService.saveProjects();
     }
+
+    onFetchData() {
+        this.projectsService.fetchProjects();
+    }
 }
