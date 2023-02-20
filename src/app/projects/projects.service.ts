@@ -8,34 +8,7 @@ import { Technology } from '../shared/technology.model'
 @Injectable()
 export class ProjectsService {
   projectsChanged = new Subject<Project[]>();
-
-  private projects: Project[] = [
-    new Project(
-      'Project 1',
-      'Project description 1',
-      '../../assets/01.jpg',
-      [
-        new Technology('JavaScript', 1),
-        new Technology('CSS3', 1)
-      ]),
-    new Project(
-      'Project 2',
-      'Project description 2',
-      '../../assets/02.jpg',
-      [
-        new Technology('Angular', 1),
-        new Technology('CSS3', 1),
-        new Technology('HTML5', 1)
-      ]),
-    new Project(
-      'Project 3',
-      'Project description 3',
-      '../../assets/03.jpg',
-      [
-        new Technology('TypeScript', 1),
-        new Technology('HTML5', 1)
-      ])
-  ];
+  private projects: Project[] = [];
 
   constructor(private http: HttpClient) {}
 
