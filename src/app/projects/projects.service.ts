@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Subject } from 'rxjs';
+import { map, Subject, tap } from 'rxjs';
 
 import { Project } from './project.model';
 import { Technology } from '../shared/technology.model'
@@ -48,13 +48,17 @@ export class ProjectsService {
   }
 
   fetchProjects() {
-    this.http
+    return this.http
       .get<Project[]>('https://gw-projects-list-default-rtdb.firebaseio.com/projects.json')
-      .pipe(map(projects => {               // map - RxJS operator
-        return projects.map(project => {    // map - array method
-          return {...project, technologies: project.technologies ? project.technologies : []};
-        });
-      }))
-      .subscribe(projects => this.setProjects(projects));
+      .pipe(
+        map(projects => {                     // map - RxJS operator
+          return projects.map(project => {    // map - array method
+            return {...project, technologies: project.technologies ? project.technologies : []};
+          });
+        }),
+        tap(projects => {
+          this.setProjects(projects);
+        })
+      )
   }
 }

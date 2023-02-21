@@ -16,6 +16,6 @@ export class HeaderComponent {
     }
 
     onFetchData() {
-        this.projectsService.fetchProjects();
+        this.projectsService.fetchProjects().subscribe();
     }
 }
