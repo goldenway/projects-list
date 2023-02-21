@@ -6,14 +6,15 @@ import { TechnologiesComponent } from "./technologies/technologies.component";
 import { ProjectStartComponent } from "./projects/project-start/project-start.component";
 import { ProjectDetailComponent } from "./projects/project-detail/project-detail.component";
 import { ProjectEditComponent } from "./projects/project-edit/project-edit.component";
+import { ProjectsResolverService } from "./projects/projects-resolver.service";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/projects', pathMatch: 'full' },
-  { path: 'projects', component: ProjectsComponent, children: [
+  { path: 'projects', component: ProjectsComponent, resolve: [ProjectsResolverService], children: [
     { path: '', component: ProjectStartComponent },
     { path: 'new', component: ProjectEditComponent },
-    { path: ':id', component: ProjectDetailComponent },
-    { path: ':id/edit', component: ProjectEditComponent }
+    { path: ':id', component: ProjectDetailComponent, resolve: [ProjectsResolverService] },
+    { path: ':id/edit', component: ProjectEditComponent, resolve: [ProjectsResolverService] }
   ] },
   { path: 'technologies', component: TechnologiesComponent }
 ];
