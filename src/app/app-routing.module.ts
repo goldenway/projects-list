@@ -7,6 +7,7 @@ import { ProjectStartComponent } from "./projects/project-start/project-start.co
 import { ProjectDetailComponent } from "./projects/project-detail/project-detail.component";
 import { ProjectEditComponent } from "./projects/project-edit/project-edit.component";
 import { ProjectsResolverService } from "./projects/projects-resolver.service";
+import { AuthComponent } from "./auth/auth.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/projects', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const appRoutes: Routes = [
     { path: ':id', component: ProjectDetailComponent, resolve: [ProjectsResolverService] },
     { path: ':id/edit', component: ProjectEditComponent, resolve: [ProjectsResolverService] }
   ] },
-  { path: 'technologies', component: TechnologiesComponent }
+  { path: 'technologies', component: TechnologiesComponent },
+  { path: 'auth', component: AuthComponent }
 ];
 
 @NgModule({

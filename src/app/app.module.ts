@@ -16,6 +16,7 @@ import { TechnologiesEditComponent } from './technologies/technologies-edit/tech
 import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectsService } from './projects/projects.service';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ProjectsService } from './projects/projects.service';
     ProjectEditComponent,
     TechnologiesComponent,
     TechnologiesEditComponent,
+    AuthComponent,
     DropdownDirective
   ],
   imports: [
