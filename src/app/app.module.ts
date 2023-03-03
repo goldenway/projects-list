@@ -17,6 +17,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectsService } from './projects/projects.service';
 import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AuthComponent } from './auth/auth.component';
     TechnologiesComponent,
     TechnologiesEditComponent,
     AuthComponent,
-    DropdownDirective
+    DropdownDirective,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
