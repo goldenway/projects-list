@@ -1,15 +1,26 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
 
 import { ProjectsService } from "../projects/projects.service";
+import { AuthService } from "../auth/auth.service";
 
 @Component({
     selector: 'pl-header',
     templateUrl: './header.component.html'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
     collapsed = true;
+    isLoggedIn = false;
+    userSub: Subscription;
 
-    constructor(private projectsService: ProjectsService) {}
+    constructor(private projectsService: ProjectsService,
+                private authService: AuthService) {}
+
+    ngOnInit(): void {
+        this.userSub = this.authService.user.subscribe(user => {
+            this.isLoggedIn = user ? true : false;
+        });
+    }
 
     onSaveData() {
         this.projectsService.saveProjects();
@@ -17,5 +28,9 @@ export class HeaderComponent {
 
     onFetchData() {
         this.projectsService.fetchProjects().subscribe();
+    }
+
+    ngOnDestroy(): void {
+        this.userSub.unsubscribe();
     }
 }
