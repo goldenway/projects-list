@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, Subject, tap } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { exhaustMap, map, Subject, take, tap } from 'rxjs';
 
 import { Project } from './project.model';
-import { Technology } from '../shared/technology.model'
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class ProjectsService {
   projectsChanged = new Subject<Project[]>();
   private projects: Project[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private authService: AuthService) {}
 
   setProjects(projects: Project[]) {
     this.projects = projects;
@@ -48,17 +49,24 @@ export class ProjectsService {
   }
 
   fetchProjects() {
-    return this.http
-      .get<Project[]>('https://gw-projects-list-default-rtdb.firebaseio.com/projects.json')
-      .pipe(
-        map(projects => {                     // map - RxJS operator
-          return projects.map(project => {    // map - array method
-            return {...project, technologies: project.technologies ? project.technologies : []};
-          });
-        }),
-        tap(projects => {
-          this.setProjects(projects);
-        })
-      )
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap(user => {
+        return this.http.get<Project[]>(
+          'https://gw-projects-list-default-rtdb.firebaseio.com/projects.json',
+          {
+            params: new HttpParams().set('auth', user.token)
+          }
+        )
+      }),
+      map(projects => {                     // map - RxJS operator
+        return projects.map(project => {    // map - array method
+          return {...project, technologies: project.technologies ? project.technologies : []};
+        });
+      }),
+      tap(projects => {
+        this.setProjects(projects);
+      })
+    );
   }
 }
