@@ -49,16 +49,7 @@ export class ProjectsService {
   }
 
   fetchProjects() {
-    return this.authService.user.pipe(
-      take(1),
-      exhaustMap(user => {
-        return this.http.get<Project[]>(
-          'https://gw-projects-list-default-rtdb.firebaseio.com/projects.json',
-          {
-            params: new HttpParams().set('auth', user.token)
-          }
-        )
-      }),
+    return this.http.get<Project[]>('https://gw-projects-list-default-rtdb.firebaseio.com/projects.json').pipe(
       map(projects => {                     // map - RxJS operator
         return projects.map(project => {    // map - array method
           return {...project, technologies: project.technologies ? project.technologies : []};
