@@ -17,6 +17,7 @@ export interface AuthResponseData {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     user = new BehaviorSubject<User>(null);
+    private tokenExpirationTimer: any;
 
     constructor(
         private http: HttpClient,
@@ -55,20 +56,6 @@ export class AuthService {
         );
     }
 
-    logout() {
-        this.user.next(null);
-        this.router.navigate(['/auth']);
-    }
-
-    private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
-        const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-        const user = new User(email, userId, token, expirationDate);
-        this.user.next(user);
-
-        // store the auth state to localStorage
-        localStorage.setItem('userData', JSON.stringify(user));
-    }
-
     autoLogin() {
         const userData: {
             email: string,
@@ -88,7 +75,41 @@ export class AuthService {
         );
         if (loadedUser.token) {
             this.user.next(loadedUser);
+            
+            // auto logout
+            const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+            this.autoLogout(expirationDuration);
         }
+    }
+
+    logout() {
+        this.user.next(null);
+        localStorage.removeItem('userData');
+        this.router.navigate(['/auth']);
+
+        // clear token expiration timer
+        if (this.tokenExpirationTimer) {
+            clearTimeout(this.tokenExpirationTimer);
+        }
+        this.tokenExpirationTimer = null;
+    }
+
+    autoLogout(expirationDuration: number) {
+        this.tokenExpirationTimer = setTimeout(() => {
+            this.logout();
+        }, expirationDuration);
+    }
+
+    private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
+        const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+        const user = new User(email, userId, token, expirationDate);
+        this.user.next(user);
+        
+        // auto logout
+        this.autoLogout(expiresIn * 1000);
+
+        // store the auth state to localStorage
+        localStorage.setItem('userData', JSON.stringify(user));
     }
 
     private handleError(errorResp: HttpErrorResponse) {
