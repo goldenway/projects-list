@@ -8,10 +8,11 @@ import { ProjectDetailComponent } from "./projects/project-detail/project-detail
 import { ProjectEditComponent } from "./projects/project-edit/project-edit.component";
 import { ProjectsResolverService } from "./projects/projects-resolver.service";
 import { AuthComponent } from "./auth/auth.component";
+import { AuthGuard } from "./auth/auth.guard";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/projects', pathMatch: 'full' },
-  { path: 'projects', component: ProjectsComponent, resolve: [ProjectsResolverService], children: [
+  { path: 'projects', component: ProjectsComponent, resolve: [ProjectsResolverService], canActivate: [AuthGuard], children: [
     { path: '', component: ProjectStartComponent },
     { path: 'new', component: ProjectEditComponent },
     { path: ':id', component: ProjectDetailComponent, resolve: [ProjectsResolverService] },
