@@ -1,8 +1,6 @@
 <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-        <div class="alert alert-danger" *ngIf="errorMessage">
-            <p>{{ errorMessage }}</p>
-        </div>
+        <pl-alert *ngIf="errorMessage" [message]="errorMessage"></pl-alert>
         <div *ngIf="isLoading" style="text-align: center;">
             <pl-loading-spinner></pl-loading-spinner>
         </div>
