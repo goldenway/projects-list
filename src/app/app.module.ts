@@ -5,8 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { TechnologiesComponent } from './technologies/technologies.component';
-import { TechnologiesEditComponent } from './technologies/technologies-edit/technologies-edit.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectsService } from './projects/projects.service';
 import { AuthComponent } from './auth/auth.component';
@@ -14,13 +12,12 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { AuthInterseptorService } from './auth/auth-interceptor.service';
 import { AlertComponent } from './shared/alert/alert.component';
 import { ProjectsModule } from './projects/projects.module';
+import { TechnologiesModule } from './technologies/technologies.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    TechnologiesComponent,
-    TechnologiesEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
     AlertComponent
@@ -31,7 +28,8 @@ import { ProjectsModule } from './projects/projects.module';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ProjectsModule
+    ProjectsModule,
+    TechnologiesModule
   ],
   providers: [
     ProjectsService,
