@@ -1,10 +1,10 @@
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
 import { TechnologiesEditComponent } from "./technologies-edit/technologies-edit.component";
 import { TechnologiesComponent } from "./technologies.component";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -12,11 +12,11 @@ import { TechnologiesComponent } from "./technologies.component";
     TechnologiesEditComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
     RouterModule.forChild([
       { path: 'technologies', component: TechnologiesComponent }
-    ])
+    ]),
+    FormsModule,
+    SharedModule
   ]
 })
 export class TechnologiesModule {}

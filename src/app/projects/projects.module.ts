@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 
@@ -9,7 +8,7 @@ import { ProjectItemComponent } from "./projects-list/project-item/project-item.
 import { ProjectsListComponent } from "./projects-list/projects-list.component";
 import { ProjectsRoutingModule } from "./projects-routing.module";
 import { ProjectsComponent } from "./projects.component";
-import { DropdownDirective } from "../shared/dropdown.directive";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -18,13 +17,12 @@ import { DropdownDirective } from "../shared/dropdown.directive";
     ProjectsListComponent,
     ProjectItemComponent,
     ProjectDetailComponent,
-    ProjectEditComponent,
-    DropdownDirective
+    ProjectEditComponent
   ],
   imports: [
-    CommonModule,
     ReactiveFormsModule,
-    ProjectsRoutingModule
+    ProjectsRoutingModule,
+    SharedModule
   ]
 })
 export class ProjectsModule {}
