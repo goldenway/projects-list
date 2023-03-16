@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -9,20 +8,20 @@ import { ProjectsModule } from './projects/projects.module';
 import { TechnologiesModule } from './technologies/technologies.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [ AppComponent ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     ProjectsModule,
     TechnologiesModule,
+    AuthModule,
     SharedModule,
     CoreModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
