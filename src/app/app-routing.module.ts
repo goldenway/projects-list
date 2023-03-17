@@ -3,7 +3,8 @@ import { RouterModule } from "@angular/router";
 
 @NgModule({
   imports: [ RouterModule.forRoot([
-    { path: '', redirectTo: '/projects', pathMatch: 'full' }
+    { path: '', redirectTo: '/projects', pathMatch: 'full' },
+    { path: '**', redirectTo: '/projects' }
   ]) ],
   exports: [ RouterModule ]
 })
