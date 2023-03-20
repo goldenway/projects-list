@@ -9,7 +9,7 @@ import { ProjectsComponent } from "./projects.component";
 import { AuthGuard } from "../auth/auth.guard";
 
 const routes: Routes = [
-  { path: 'projects', component: ProjectsComponent, resolve: [ProjectsResolverService], canActivate: [AuthGuard], children: [
+  { path: '', component: ProjectsComponent, resolve: [ProjectsResolverService], canActivate: [AuthGuard], children: [
     { path: '', component: ProjectStartComponent },
     { path: 'new', component: ProjectEditComponent },
     { path: ':id', component: ProjectDetailComponent, resolve: [ProjectsResolverService] },
